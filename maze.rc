@@ -1,0 +1,38 @@
+#define INCL_PM
+#include <os2.h>
+#include "maze.h"
+
+MENU ID_MAINMENU
+  {
+    SUBMENU "~Options",-1
+      {
+        MENUITEM "~Solve\tAltS",IDM_SOLVE
+        MENUITEM "~New\tAltN",IDM_NEW
+        MENUITEM "~Clear\tAltC",IDM_CLEAR
+        MENUITEM "~Help\tAltH",IDM_HELP
+      }
+  }
+
+ACCELTABLE ID_MAINMENU
+  {
+    "s",IDM_SOLVE,CHAR,ALT
+    "n",IDM_NEW,CHAR,ALT
+    "c",IDM_CLEAR,CHAR,ALT
+    "h",IDM_HELP,CHAR,ALT
+  }
+
+DLGTEMPLATE IDD_HELPBOX
+  {
+    DIALOG "",-1,5,5,210,164,WS_SAVEBITS|FS_DLGBORDER
+      {
+        LTEXT "     Resize or select New for a new maze." -1,2,140,205,10
+        LTEXT "     Use the cursor keys to attempt to"    -1,2,116,190,10
+        LTEXT "solve an unsolved maze."                   -1,2,104,115,10
+        LTEXT "     Select Clear to remove attempts at"   -1,2, 80,195,10
+        LTEXT "solution."                                 -1,2, 68, 45,10
+        LTEXT "     Select Solve to have the computer"    -1,2, 44,190,10
+        LTEXT "solve the maze."                           -1,2, 32, 75,10
+        DEFPUSHBUTTON "OK" DID_OK,89,4,32,14,WS_GROUP
+      }
+  }
+
