@@ -1,3 +1,14 @@
+//==========================================
+// MAZE.C : PM Puzzle Maze Game
+// Version: 1.05
+// License: GNU GPL V3 License
+// Authors:
+// - Martin Iturbide, 2023
+// - James L. Dean, 1988
+//==========================================
+/*
+ *  MAZE.C -- A Puzzle Maze Game. 
+*/
 #define INCL_PM
 #include <os2.h>
 #include <stdlib.h>
@@ -30,12 +41,12 @@ typedef struct STACK2REC /* s2 */
                  } *pSTACK2REC;
 
 static void      ClearPaths(pROWREC *,int *);
-MRESULT EXPENTRY ClientWndProc(HWND,USHORT,MPARAM,MPARAM);
+MRESULT EXPENTRY ClientWndProc(HWND,ULONG,MPARAM,MPARAM);
 static void      CreateMaze(int *,int *,pROWREC *,pROWREC *,
                   int *);
 static void      DestroyMaze(pROWREC *,pROWREC *);
-MRESULT EXPENTRY HelpProc(HWND,USHORT,MPARAM,MPARAM);
-int cdecl        main(void);
+MRESULT EXPENTRY HelpProc(HWND,ULONG,MPARAM,MPARAM);
+int main(void);
 static void      OptionallyHaveComputerSolve(pROWREC *,
                   pROWREC *,int *,int *,int *,int *);
 static void      PaintMaze(pROWREC *,int *,int *,int *,int *,int *,
@@ -44,7 +55,7 @@ static void      SizeMaze(int *,int *,pROWREC *,pROWREC *,
                   int *,int *,int *,int *,int *,int *,int *,int *,int *,
                   int *,int *,int *);
 
-int cdecl main(void)
+int main(void)
   {
     ULONG       ctldata;
     HAB         hAB;
@@ -54,7 +65,7 @@ int cdecl main(void)
     QMSG        qmsg;
     static CHAR szClientClass [] = "Maze";
 
-    hAB=WinInitialize(NULL);
+    hAB=WinInitialize(0);
     hmq=WinCreateMsgQueue(hAB,0);
     WinRegisterClass(hAB,(PCH) szClientClass,(PFNWP) ClientWndProc,
      CS_SYNCPAINT|CS_SIZEREDRAW,0);
@@ -72,15 +83,15 @@ int cdecl main(void)
     return(0);
   }
 
-MRESULT EXPENTRY ClientWndProc(HWND hwnd,USHORT msg,MPARAM mp1,
+MRESULT EXPENTRY ClientWndProc(HWND hwnd,ULONG msg,MPARAM mp1,
  MPARAM mp2)
   {
     static int     aiDeltaX [4] [24];
     static int     aiDeltaY [4] [24];
     static int     aiRN [8];
            HPS     hPS;
-           HWND    hwndMenu;
-           int     iDeltaIndex1;
+           // HWND    hwndMenu = 0;
+           int     iDeltaIndex1 = 0;
     static int     iFatalError;
     static int     iMagnitudeDeltaX;
     static int     iMagnitudeDeltaY;
@@ -101,7 +112,7 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd,USHORT msg,MPARAM mp1,
     static pROWREC prrRowHead;
     static pROWREC prrRowTail;
     static POINTL  ptlPosition;
-           USHORT  usFrequency;
+           ULONG  usFrequency;
 
     switch (msg)
       {
@@ -243,8 +254,7 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd,USHORT msg,MPARAM mp1,
           return((MRESULT) 1);
           break;
         case WM_COMMAND:
-          hwndMenu=WinWindowFromID(WinQueryWindow(hwnd,QW_PARENT,FALSE),
-           FID_MENU);
+          // hwndMenu=WinWindowFromID(WinQueryWindow(hwnd,QW_PARENT), FID_MENU);
           switch (COMMANDMSG(&msg)->cmd)
             {
               case IDM_CLEAR:
@@ -291,7 +301,7 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd,USHORT msg,MPARAM mp1,
                 WinInvalidateRect(hwnd,NULL,FALSE);
                 break;
               case IDM_HELP:
-                WinDlgBox(HWND_DESKTOP,hwnd,HelpProc,NULL,IDD_HELPBOX,
+                WinDlgBox(HWND_DESKTOP,hwnd,HelpProc,NULLHANDLE,IDD_HELPBOX,
                  NULL);
                 break;
               default:
@@ -320,7 +330,7 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd,USHORT msg,MPARAM mp1,
             }
           break;
         case WM_ERASEBACKGROUND:
-          return(TRUE);
+          return ((MRESULT)TRUE) ;
           break;
         case WM_PAINT:
           hPS=WinBeginPaint(hwnd,(HPS) NULL,(PWRECT) NULL);
@@ -340,7 +350,7 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd,USHORT msg,MPARAM mp1,
     return(0L);
   }
 
-MRESULT EXPENTRY HelpProc(HWND hwnd,USHORT msg,MPARAM mp1,MPARAM mp2)
+MRESULT EXPENTRY HelpProc(HWND hwnd,ULONG msg,MPARAM mp1,MPARAM mp2)
   {
     switch (msg)
       {
@@ -1033,7 +1043,7 @@ static void OptionallyHaveComputerSolve(pprrRowHead,pprrRowTail,
       pROWREC       prrNextPtr;
       pSTACK1REC    ps1StackHead;
       pSTACK1REC    ps1StackPtr;
-      unsigned char uchDeltaIndex1;
+      unsigned char uchDeltaIndex1 = 0;
 
       iX=1;
       prrCurrentPtr=(*pprrRowHead)->prrSuccessorPtr;
@@ -1147,4 +1157,3 @@ static void OptionallyHaveComputerSolve(pprrRowHead,pprrRowTail,
         }
       return;
     }
-

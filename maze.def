@@ -1,16 +1,7 @@
+;-------------------------------------
+; MAZE.DEF module definition file
+;-------------------------------------
+
 NAME    MAZE    WINDOWAPI
 
-DESCRIPTION 'Written by James L. Dean  12/30/88  Revised 2/13/89'
-
-STUB    'OS2STUB.EXE'
-
-CODE    MOVEABLE
-DATA    MOVEABLE MULTIPLE
-
-HEAPSIZE  8192
-STACKSIZE 500000
-
-EXPORTS
-    ClientWndProc
-    HelpProc
-
+DESCRIPTION '@#OS2World:1.05#@##1## 18 May 2023 20:00:00     ARCAOS-507::::::v1.05@@Maze game'

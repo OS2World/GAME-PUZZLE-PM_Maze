@@ -1,3 +1,6 @@
+/*------------------------
+   MAZE.H header file
+  ------------------------*/
 #define ID_MAINMENU 1
 
 #define IDM_SOLVE 1
@@ -6,4 +9,3 @@
 #define IDM_HELP  4
 
 #define IDD_HELPBOX 1
-

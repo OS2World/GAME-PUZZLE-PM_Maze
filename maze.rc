@@ -1,3 +1,6 @@
+/*----------------------------------
+   MAZE.RC resource script file
+  ----------------------------------*/
 #define INCL_PM
 #include <os2.h>
 #include "maze.h"
@@ -25,14 +28,14 @@ DLGTEMPLATE IDD_HELPBOX
   {
     DIALOG "",-1,5,5,210,164,WS_SAVEBITS|FS_DLGBORDER
       {
-        LTEXT "     Resize or select New for a new maze." -1,2,140,205,10
-        LTEXT "     Use the cursor keys to attempt to"    -1,2,116,190,10
-        LTEXT "solve an unsolved maze."                   -1,2,104,115,10
-        LTEXT "     Select Clear to remove attempts at"   -1,2, 80,195,10
-        LTEXT "solution."                                 -1,2, 68, 45,10
-        LTEXT "     Select Solve to have the computer"    -1,2, 44,190,10
-        LTEXT "solve the maze."                           -1,2, 32, 75,10
+        LTEXT "     Maze 1.05 " 					-1,2,140,205,10
+        LTEXT "     Resize or select New for a new maze."    		-1,2,116,190,10
+        LTEXT "     Use the cursor keys to attempt to solve an"		-1,2,104,115,10
+        LTEXT "     unsolved maze."   					-1,2, 80,195,10
+        LTEXT "     Select Clear to remove attempts at solution."	-1,2, 68, 45,10
+        LTEXT "     Select Solve to have the computer solve the maze."	-1,2, 44,190,10
+        LTEXT "   "                           -1,2, 32, 75,10
         DEFPUSHBUTTON "OK" DID_OK,89,4,32,14,WS_GROUP
       }
   }
-
+
