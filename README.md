@@ -1,6 +1,8 @@
 # GAME-PUZZLE-PM_Maze
 Maze game. 
 
+![PM Maze ScreenShot](/wiki/PMMaze_001.png)
+
 ## LICENSE
 * GNU GPL V3
 
