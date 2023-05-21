@@ -7,9 +7,10 @@ Maze game.
 * GNU GPL V3
 
 ## COMPILE TOOLS
-* 
+* yum install git gcc make libc-devel binutils watcom-wrc watcom-wlink-hll
  
 ## AUTHORS
+* Martin Iturbide (2023)
 * Jeff Kerr.
 
 ## LINKS
