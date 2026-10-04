@@ -2,7 +2,7 @@
 
 Maze puzzle game for OS/2 Presentation Manager.
 
-![PM Maze ScreenShot](/doc/PMMaze_001.png)
+![PM Maze ScreenShot](/doc/wiki/PMMaze_001.png)
 
 ## LICENSE
 * GNU GPL V3

@@ -1,0 +1,103 @@
+/*
+  Maze - Resource script file
+  Copyright (C) 1988 James L. Dean
+  Copyright (C) 2023 Martin Iturbide
+  Copyright (C) 2026 OS2World
+*/
+#define INCL_PM
+#include <os2.h>
+#include "maze.h"
+
+/* ============================================================================
+   Main menu (plan.txt §6). Runtime set_language() rewrites the item texts.
+   ============================================================================ */
+MENU ID_MAINMENU
+  {
+    SUBMENU "~Game", IDM_SUBMENU_GAME
+      {
+        MENUITEM "~New Game\tCtrl+N", IDM_NEW
+        MENUITEM SEPARATOR
+MENUITEM "~Solve\tCtrl+S", IDM_SOLVE
+        MENUITEM "~Clear\tCtrl+C", IDM_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "E~xit\tCtrl+X", IDM_EXIT
+      }
+    SUBMENU "~Options", IDM_SUBMENU_OPTIONS
+      {
+        SUBMENU "~Language", IDM_SUBMENU_LANGUAGE
+          {
+            MENUITEM "English", IDM_LANG_EN
+            MENUITEM "Espanol", IDM_LANG_ES
+            MENUITEM "Nederlands", IDM_LANG_NL
+            MENUITEM "Deutsch", IDM_LANG_DE
+            MENUITEM "Francais", IDM_LANG_FR
+            MENUITEM "Italiano", IDM_LANG_IT
+          }
+        MENUITEM SEPARATOR
+        MENUITEM "~Frame Controls\tCtrl+F", IDM_FRAME
+        MENUITEM SEPARATOR
+        MENUITEM "~Save settings on exit", IDM_SAVEONEXIT
+      }
+    SUBMENU "~Help", IDM_SUBMENU_HELP
+      {
+        MENUITEM "~Help...", IDM_HELP
+        MENUITEM "~About...", IDM_ABOUT
+      }
+  }
+
+/* ============================================================================
+   Accelerator table (plan.txt §7)
+   ============================================================================ */
+ACCELTABLE ID_MAINMENU
+  {
+    "n", IDM_NEW, CHAR, CONTROL
+    "N", IDM_NEW, CHAR, CONTROL
+    "x", IDM_EXIT, CHAR, CONTROL
+    "X", IDM_EXIT, CHAR, CONTROL
+    "f", IDM_FRAME, CHAR, CONTROL
+    "F", IDM_FRAME, CHAR, CONTROL
+    "s", IDM_SOLVE, CHAR, CONTROL
+    "S", IDM_SOLVE, CHAR, CONTROL
+    "c", IDM_CLEAR, CHAR, CONTROL
+    "C", IDM_CLEAR, CHAR, CONTROL
+  }
+
+/* ============================================================================
+   Application icon (shared ID_MAINMENU; loaded by WinCreateStdWindow with
+   FCF_ICON through the idResources parameter)
+   ============================================================================ */
+ICON ID_MAINMENU maze.ico
+
+/* ============================================================================
+   Help dialog (how to play). Text replaced at runtime by language strings.
+   ============================================================================ */
+DLGTEMPLATE IDD_HELPBOX
+  {
+    DIALOG "Maze Help",-1,5,5,240,190,WS_SAVEBITS|FS_DLGBORDER
+      {
+        LTEXT "Maze 1.06", IDD_HELP_T1, 10, 160, 220, 10
+        LTEXT "Resize the window or select New Game for a new maze.", IDD_HELP_T2, 10, 144, 220, 10
+        LTEXT "Use the cursor keys (or 2, 4, 6, 8) to walk an unsolved maze.", IDD_HELP_T3, 10, 128, 228, 10
+        LTEXT "Select Clear to remove your path marks.", IDD_HELP_T4, 10, 112, 220, 10
+        LTEXT "Select Solve to have the computer solve the maze.", IDD_HELP_T5, 10, 96, 220, 10
+        LTEXT "Reach the upper right corner to finish.", IDD_HELP_T6, 10, 80, 220, 10
+        DEFPUSHBUTTON "OK" DID_OK, 98, 10, 44, 14, WS_GROUP
+      }
+  }
+
+/* ============================================================================
+   About dialog (plan.txt §11 - not translated, stays in English)
+   ============================================================================ */
+DLGTEMPLATE IDD_ABOUT
+  {
+    DIALOG "About Maze",0,32,24,240,110,, FCF_TITLEBAR|FCF_DLGBORDER
+      {
+        CTEXT "Maze for OS/2",                 -1, 10, 90, 220, 8
+        CTEXT "Version 1.06",                  -1, 10, 78, 220, 8
+        CTEXT "OpenWatcom Release",            -1, 10, 66, 220, 8
+        CTEXT "(c) 1988, 2023, James L. Dean, Martin Iturbide", -1, 10, 54, 220, 8
+        CTEXT "(c) 2026, OS2World",            -1, 10, 42, 220, 8
+        CTEXT "GNU GPL V3",                    -1, 10, 30, 220, 8
+        DEFPUSHBUTTON "Close" DID_OK,          98, 10, 44, 14, WS_GROUP
+      }
+  }

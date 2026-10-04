@@ -1,0 +1,11 @@
+; Maze.def - Module definition file
+; Copyright (C) 1988 James L. Dean
+; Copyright (C) 2023 Martin Iturbide
+; Copyright (C) 2026 OS2World
+
+NAME Maze WINDOWAPI
+
+STACKSIZE 65536
+HEAPSIZE 4096
+
+; No DESCRIPTION field - BLDLEVEL goes in C code per plan.txt §5

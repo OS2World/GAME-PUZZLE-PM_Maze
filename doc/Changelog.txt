@@ -1,0 +1,21 @@
+CHANGELOG - Maze (PM Puzzle Maze Game)
+
+1.06 (2026-10-04)
+- Ported from GCC to Open Watcom (wcc386/wlink/wrc), build via makefile.wat + compile-wat.cmd
+- Applied OS/2 PM Games Standardization Plan (plan.txt rev 2026-09-20)
+- Standard folder layout: src/, bin/, doc/, help/, legacy/
+- BLDLEVEL embedded in C code, DESCRIPTION removed from .def
+- Standardized Game/Options/Help menu with reserved ID ranges
+- Added Ctrl+N (New Game), Ctrl+X (Exit), Ctrl+F (Frame Controls) accelerators
+- Added six-language support (English, Spanish, Dutch, German, French, Italian)
+  with runtime menu switching; language persisted in Maze.cfg
+- Added standard About dialog (plan section 11)
+- Frame Controls toggle hides/shows title bar and menu
+- Window created invisible and centered at 1024x768 (shrinks to fit smaller screens)
+- Added "Save settings on exit" option persisted to Maze.cfg
+
+1.05 (2023-05-17)
+- Compiled with ArcaOS 5.0.7 with gcc 9 (Martin Iturbide)
+
+1.04 (1988-12-30)
+- Original version by James L. Dean

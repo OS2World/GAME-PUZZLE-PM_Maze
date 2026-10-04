@@ -1,0 +1,25 @@
+# Build output
+bin/*.exe
+bin/*.obj
+bin/*.res
+bin/*.map
+bin/*.dll
+bin/*.log
+bin/*.cfg
+bin/Hiscore.bin
+bin/hlp/*.hlp
+
+# Logs
+*.log
+
+# Settings
+*.cfg
+
+# OS/2 specific
+*.bak
+*.err
+
+# IDE / editor
+.vscode/
+*.swp
+*~
